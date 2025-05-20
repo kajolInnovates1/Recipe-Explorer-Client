@@ -10,7 +10,7 @@ const Layouts = () => {
                 <header>
                     <Navbar></Navbar>
                 </header>
-                <main className='px-12 space-y-24'>
+                <main className='px-12 my-12 space-y-24'>
                     <Outlet></Outlet>
                 </main>
                 <footer>
