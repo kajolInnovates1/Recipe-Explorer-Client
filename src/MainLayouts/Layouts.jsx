@@ -6,11 +6,11 @@ import Footer from '../Components/Footer/Footer';
 const Layouts = () => {
     return (
         <>
-            <div className='max-w-7xl mx-auto'>
+            <div className='mx-auto'>
                 <header>
                     <Navbar></Navbar>
                 </header>
-                <main>
+                <main className='px-12 space-y-24'>
                     <Outlet></Outlet>
                 </main>
                 <footer>
