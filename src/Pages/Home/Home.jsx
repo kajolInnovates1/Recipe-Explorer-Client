@@ -3,7 +3,9 @@ import Banner from './Banner';
 import Testimonials from './Testmonial';
 import Categories from './Category';
 import SortData from './SortData';
+import { useLoaderData } from 'react-router';
 const Home = () => {
+    const data = useLoaderData();
     return (
         <div>
 
@@ -17,7 +19,7 @@ const Home = () => {
 
             {/* Sorting section */}
             <div>
-                <SortData></SortData>
+                <SortData data={data}></SortData>
             </div>
 
 

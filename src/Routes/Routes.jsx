@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                loader: () => fetch('http://localhost:8080/sort'),
                 Component: Home
             },
             {
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:8080/details/${params.id}`),
                 Component: Details
             },
+
 
         ]
     },
