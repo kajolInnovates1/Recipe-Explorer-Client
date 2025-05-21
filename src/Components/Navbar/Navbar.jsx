@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
+// import ReactTooltip from 'react-tooltip';
+
 
 const Navbar = () => {
     const { user, signout, setUser } = useContext(AuthContext);
@@ -11,7 +13,7 @@ const Navbar = () => {
             // console.log(error);
         })
     }
-    console.log(user.photoURL);
+    console.log(user?.photoURL);
 
 
     const Links = <>
@@ -62,7 +64,9 @@ const Navbar = () => {
             <div className="navbar-end">
                 <div className="avatar">
                     <div className="mask mask-hexagon-2 w-8">
-                        <img src={user ? user.photoURL : 'https://img.daisyui.com/images/profile/demo/distracted2@192.webp'} alt="User Profile" />
+                        <img src={user ? user?.photoURL : 'https://img.daisyui.com/images/profile/demo/distracted2@192.webp'} alt="User Profile" />
+                        {/* <ReactTooltip place="top" type="dark" effect="solid" />
+                        data-tip="Hello, I am a tooltip!" */}
 
                     </div>
                 </div>

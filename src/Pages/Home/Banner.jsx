@@ -1,8 +1,14 @@
 import React from 'react';
 import imgb from '../../assets/banner-re.jpg'
+import { useNavigate } from 'react-router';
 
 
 const Banner = () => {
+    const navigate = useNavigate();
+    const handlesub = () => {
+        navigate('/allrecipe');
+
+    }
     return (
         <div>
             <div
@@ -20,7 +26,7 @@ const Banner = () => {
                             The Recipe Book App is a beautifully designed and user-friendly application that helps you discover, save, and organize your favorite recipes.
 
                         </p>
-                        <button className="btn btn-primary">View All Recipes</button>
+                        <button onClick={handlesub} className="btn btn-primary">View All Recipes</button>
                     </div>
                 </div>
             </div>
