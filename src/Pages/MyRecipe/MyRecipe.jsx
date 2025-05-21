@@ -24,10 +24,15 @@ const MyRecipe = () => {
         const remaining = info.filter(recipe => recipe._id !== deletedId);
         setInfo(remaining);
     };
+    const handleUpdateInUI = (updatedRecipe) => {
+        setInfo(prev => prev.map(recipe =>
+            recipe._id === updatedRecipe._id ? updatedRecipe : recipe
+        ));
+    };
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-h-screen'>
             {
-                info && info.map(recipe => <SingleMyrecipe key={recipe._id} recipe={recipe} handleDeleteFromUI={handleDeleteFromUI} ></SingleMyrecipe>)
+                info && info.map(recipe => <SingleMyrecipe key={recipe._id} recipe={recipe} handleDeleteFromUI={handleDeleteFromUI} handleUpdateInUI={handleUpdateInUI} ></SingleMyrecipe>)
             }
         </div>
     );
