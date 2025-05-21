@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const SingleRecipe = ({ recipe }) => {
-    const { photo, title, likeCount, ingredient, instruction, cuisine, preparationTime, categories } = recipe;
+    const { _id, photo, title, likeCount, ingredient, instruction, cuisine, preparationTime, categories } = recipe;
 
     return (
         <div>
@@ -31,9 +32,11 @@ const SingleRecipe = ({ recipe }) => {
                     <p className="text-sm text-gray-600 line-clamp-3">{instruction}</p>
                 </div>
 
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">
-                    See Details
-                </button>
+                <Link to={`/details/${_id}`}>
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">
+                        See Details
+                    </button>
+                </Link>
             </div>
 
         </div>

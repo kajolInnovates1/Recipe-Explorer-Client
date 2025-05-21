@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Components/AuthContext/AuthContext';
-import { updateProfile } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import { auth } from '../../Components/Firebase/init.firebase';
+import Swal from 'sweetalert2';
+
+
 
 const Registration = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, setUser } = useContext(AuthContext);
     const [error, setError] = useState('');
 
     const handleSubmit = e => {
@@ -17,10 +20,10 @@ const Registration = () => {
         const password = form.password.value;
 
         const userinfo = {
+            email,
             name,
             photo,
-            email,
-            password
+
         };
 
         // password check
@@ -42,19 +45,83 @@ const Registration = () => {
         setError('');
 
         createUser(email, password).then(result => {
-            console.log(result);
+            // console.log(result);
             updateProfile(auth.currentUser, {
                 displayName: name,
                 photoURL: photo
 
             }).catch(error => {
-                console.log(error);
+                alert(error);
             })
+            setUser(result.user);
 
-        }).catch(error => console.log(error));
+            fetch('http://localhost:8080/user', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(userinfo)
+            }).then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        Swal.fire({
+                            title: "Registration Succesfull!",
+                            icon: "success",
+                            draggable: true
+                        });
+
+                    }
+
+                });
+
+        }).catch(error => {
+            alert(error);
+
+        });
 
 
 
+    }
+
+    const handlegoogleLogin = () => {
+
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then(result => {
+                // console.log(result);
+                setUser(result.user);
+
+
+                const userinfodata = {
+                    email: result?.user?.email,
+                    name: result?.user?.displayName,
+                    photo: result?.user?.photoURL
+
+
+                }
+                fetch('http://localhost:8080/user', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userinfodata)
+                }).then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Registration Succesfull!",
+                                icon: "success",
+                                draggable: true
+                            });
+                        }
+                    }
+
+                    );
+            })
+            .catch(error => {
+                alert(error);
+            });
     }
     return (
         <div>
@@ -77,7 +144,7 @@ const Registration = () => {
                                     <label className='font-bold'>Accept Terms and Conditions</label>
                                 </div>
                                 <div>
-                                    <button className='btn border border-blue-500 w-full hover:bg-primary hover:text-white'>Continue with Google</button>
+                                    <button onClick={handlegoogleLogin} className='btn border border-blue-500 w-full hover:bg-primary hover:text-white'>Continue with Google</button>
                                 </div>
                                 <button className="btn bg-primary text-white mt-4 w-full">Sign Up</button>
                                 {

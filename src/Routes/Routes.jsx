@@ -8,6 +8,7 @@ import AllRecipe from "../Pages/AllRecipe/AllRecipe";
 import MyRecipe from "../Pages/MyRecipe/MyRecipe";
 import Registration from "../Pages/Registration/Registration";
 import Login from "../Pages/Login/Login";
+import Details from "../Pages/Details/Details";
 
 export const router = createBrowserRouter([
     {
@@ -39,6 +40,11 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 Component: Login
+            },
+            {
+                path: 'details/:id',
+                loader: ({ params }) => fetch(`http://localhost:8080/details/${params.id}`),
+                Component: Details
             }
         ]
     },

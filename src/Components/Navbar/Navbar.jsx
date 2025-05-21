@@ -8,16 +8,30 @@ const Navbar = () => {
         signout().then(() => {
             setUser(null);
         }).catch(error => {
-            console.log(error);
+            // console.log(error);
         })
     }
+    // console.log(user);
+
 
     const Links = <>
         <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to="/">Home</NavLink>
         <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/allrecipe'>All Recipes</NavLink>
         <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/addrecipe'>Add Recipe</NavLink>
-        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/myrecipe'>My Receipe</NavLink>
-        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/Registration'>Registration</NavLink>
+
+        {
+            user &&
+            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ''}`} to="/myrecipe">My Recipe</NavLink>
+        }
+
+        {
+            !user &&
+            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ''}`} to="/registration">Registration</NavLink>
+        }
+
+
+
+
     </>;
     return (
         <div className="navbar bg-base-100 shadow-sm py-4">
@@ -47,7 +61,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user && <p>{user}</p>
+                    user?.displayName && <p>{user.displayName}</p>
                 }
                 {
                     user ? <button onClick={handleSignOut} className='btn bg-primary text-white'>Log Out</button> : <Link to={'/login'}><button className='btn bg-primary text-white'>Log In</button></Link>

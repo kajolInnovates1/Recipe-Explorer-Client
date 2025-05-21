@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Components/AuthContext/AuthContext';
 
 const AddRecipe = () => {
     const cuisines = ['Italian', 'Mexican', 'Indian', 'Chinese', 'Others'];
     const categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'];
+    const { user } = useContext(AuthContext);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,7 +22,8 @@ const AddRecipe = () => {
             selectedCategories.push(checkbox.value);
         });
 
-        const formInfo = {
+
+        const formInfoo = {
             photo,
             title,
             ingredient,
@@ -29,17 +33,32 @@ const AddRecipe = () => {
             categories: selectedCategories,
             likeCount: 0
         }
-        console.log(formInfo);
+        if (user) {
+            const userEmail = user?.email;
+            const formInfo = { ...formInfoo, userEmail };
 
-        fetch('http://localhost:8080/use', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(formInfo)
-        })
-            .then(res => res.json())
-            .then(data => console.log(data));
+
+
+            // console.log(formInfo);
+
+            fetch('http://localhost:8080/use', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(formInfo)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        alert('added Data succesfully');
+                    }
+                }
+                );
+        }
+        else {
+            alert('please login ');
+        }
 
 
 
