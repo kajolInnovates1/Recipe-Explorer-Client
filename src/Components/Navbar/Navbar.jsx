@@ -11,7 +11,7 @@ const Navbar = () => {
             // console.log(error);
         })
     }
-    // console.log(user);
+    console.log(user.photoURL);
 
 
     const Links = <>
@@ -60,12 +60,17 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {
-                    user?.displayName && <p>{user.displayName}</p>
-                }
-                {
-                    user ? <button onClick={handleSignOut} className='btn bg-primary text-white'>Log Out</button> : <Link to={'/login'}><button className='btn bg-primary text-white'>Log In</button></Link>
-                }
+                <div className="avatar">
+                    <div className="mask mask-hexagon-2 w-8">
+                        <img src={user ? user.photoURL : 'https://img.daisyui.com/images/profile/demo/distracted2@192.webp'} alt="User Profile" />
+
+                    </div>
+                </div>
+                <div className='ml-2'>
+                    {
+                        user ? <button onClick={handleSignOut} className='btn bg-primary text-white'>Log Out</button> : <Link to={'/login'}><button className='btn bg-primary text-white'>Log In</button></Link>
+                    }
+                </div>
 
             </div>
         </div>
