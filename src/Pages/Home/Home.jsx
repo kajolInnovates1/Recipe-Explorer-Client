@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import Testimonials from './Testmonial';
 import Categories from './Category';
+import SortData from './SortData';
 const Home = () => {
     return (
         <div>
@@ -13,6 +14,12 @@ const Home = () => {
             </div>
 
             {/* extra Section */}
+
+            {/* Sorting section */}
+            <div>
+                <SortData></SortData>
+            </div>
+
 
             <div>
 
