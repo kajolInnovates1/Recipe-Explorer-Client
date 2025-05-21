@@ -1,13 +1,35 @@
 import React from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 
-const SingleMyrecipe = ({ recipe }) => {
+const SingleMyrecipe = ({ recipe, handleDeleteFromUI }) => {
     const { _id, photo, title, likeCount, ingredient, instruction, cuisine, preparationTime, categories } = recipe;
+    const handleDelete = () => {
+        fetch(`http://localhost:8080/myrecipe/${_id}`, {
+            method: 'DELETE',
+
+        }).then(res => res.json())
+            .then(data => {
+                if (data.deletedCount) {
+
+                    toast.success('Deleted Succesfull');
+
+
+
+                }
+            });
+
+        handleDeleteFromUI(_id);
+    }
 
 
     return (
         <div>
 
             <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col gap-4">
+                <ToastContainer
+                    position="top-center"
+                    reverseOrder={false}
+                />
                 <img
                     src={photo}
                     alt={title}
@@ -29,7 +51,7 @@ const SingleMyrecipe = ({ recipe }) => {
                     >
                         Update
                     </button>
-                    <button
+                    <button onClick={handleDelete}
 
                         className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
                     >

@@ -7,21 +7,27 @@ import SingleMyrecipe from './SingleMyrecipe';
 const MyRecipe = () => {
     const { user } = useContext(AuthContext);
     const initialData = useLoaderData();
-    const [info, setInfo] = useState(null);
-    // console.log(initialData);
+    const [info, setInfo] = useState([]);
+
+
     useEffect(() => {
         if (Array.isArray(initialData)) {
-            const remainingdata = initialData.filter(data => data.userEmail === user.email);
-            setInfo(remainingdata);
+            const remainingdata1 = initialData.filter(data1 => data1?.userEmail === user?.email);
+
+            setInfo(remainingdata1);
 
         }
-    }, [initialData]);
+    }, [initialData, user?.email]);
+
+
+    const handleDeleteFromUI = (deletedId) => {
+        const remaining = info.filter(recipe => recipe._id !== deletedId);
+        setInfo(remaining);
+    };
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 min-h-screen'>
             {
-                info && info.map(recipe => <SingleMyrecipe key={recipe._id} recipe={recipe}></SingleMyrecipe>)
-
-
+                info && info.map(recipe => <SingleMyrecipe key={recipe._id} recipe={recipe} handleDeleteFromUI={handleDeleteFromUI} ></SingleMyrecipe>)
             }
         </div>
     );

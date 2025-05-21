@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Components/AuthContext/AuthContext';
 import { GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth';
 import { auth } from '../../Components/Firebase/init.firebase';
 import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 
 const Registration = () => {
     const { createUser, setUser } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -69,6 +71,7 @@ const Registration = () => {
                             icon: "success",
                             draggable: true
                         });
+                        navigate('/');
 
                     }
 
@@ -86,6 +89,8 @@ const Registration = () => {
     const handlegoogleLogin = () => {
 
         const provider = new GoogleAuthProvider();
+
+
 
         signInWithPopup(auth, provider)
             .then(result => {
@@ -114,33 +119,41 @@ const Registration = () => {
                                 icon: "success",
                                 draggable: true
                             });
+                            navigate('/');
+
                         }
                     }
 
                     );
             })
             .catch(error => {
-                alert(error);
+                toast.error(error);
+
+
             });
     }
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
+                <ToastContainer
+                    position="top-center"
+                    reverseOrder={false}
+                />
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <div className="card-body">
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <h1 className='text-2xl font-bold text-center text-primary'>Login Form</h1>
+                                <h1 className='text-2xl font-bold text-center text-primary'>Registration Form</h1>
                                 <label className="label font-bold">Name</label>
-                                <input type="text" name='name' className="input w-full" placeholder="Name" />
+                                <input type="text" name='name' className="input w-full" placeholder="Name" required />
                                 <label className="label font-bold">Photo URL</label>
-                                <input type="text" name='photo' className="input w-full" placeholder="Photo URL" />
+                                <input type="text" name='photo' className="input w-full" placeholder="Photo URL" required />
                                 <label className="label font-bold">Email</label>
-                                <input type="email" name='email' className="input w-full" placeholder="Email" />
+                                <input type="email" name='email' className="input w-full" placeholder="Email" required />
                                 <label className="label font-bold">Password</label>
-                                <input type="password" name='password' className="input w-full" placeholder="Password" />
+                                <input type="password" name='password' className="input w-full" placeholder="Password" required />
                                 <div className='flex items-center gap-1 text-sm'>
-                                    <input className='size-4' type="checkbox" />
+                                    <input className='size-4' type="checkbox" required />
                                     <label className='font-bold'>Accept Terms and Conditions</label>
                                 </div>
                                 <div>

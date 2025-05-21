@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Components/AuthContext/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
 
 const SingleRecipe = ({ recipe }) => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
     const { _id, photo, title, likeCount, ingredient, instruction, cuisine, preparationTime, categories } = recipe;
     const handleClick = () => {
         toast.error("Can't See Details! please Login");
+        navigate('/login');
+
 
     }
     return (

@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Components/AuthContext/AuthContext';
+import { useNavigate } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
 
 const AddRecipe = () => {
     const cuisines = ['Italian', 'Mexican', 'Indian', 'Chinese', 'Others'];
     const categories = ['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'];
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
@@ -21,6 +24,10 @@ const AddRecipe = () => {
         checkboxes.forEach((checkbox) => {
             selectedCategories.push(checkbox.value);
         });
+        if (!user) {
+            toast.error("This didn't work.");
+            navigate('/login');
+        }
 
 
         const formInfoo = {
@@ -51,13 +58,11 @@ const AddRecipe = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
-                        alert('added Data succesfully');
+                        toast.success('Added Data Succesfully');
+                        navigate('/myrecipe');
                     }
                 }
                 );
-        }
-        else {
-            alert('please login ');
         }
 
 
@@ -66,6 +71,10 @@ const AddRecipe = () => {
 
     return (
         <div className="max-w-4xl mx-auto mt-10 p-8 bg-white shadow-lg rounded-xl">
+            <ToastContainer
+                position="top-center"
+                reverseOrder={false}
+            />
             <h2 className="text-3xl font-bold mb-6 text-center">Add a New Recipe</h2>
 
             <form onSubmit={handleSubmit} className="space-y-5">

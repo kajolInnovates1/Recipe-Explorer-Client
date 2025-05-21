@@ -1,13 +1,15 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Components/AuthContext/AuthContext';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { GoogleAuthProvider, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../Components/Firebase/init.firebase';
 import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const { setUser } = useContext(AuthContext);
     const [email, setEmail] = useState(null);
+    const navigate = useNavigate();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -26,6 +28,7 @@ const Login = () => {
                 });
                 // console.log(result.user);
                 setUser(result.user);
+                navigate('/');
             })
             .catch(error => {
                 // console.error("Login Error:", error.code, error.message);
@@ -42,13 +45,14 @@ const Login = () => {
 
     const handleForget = () => {
         if (!email) {
-            alert('please Enter Your email and reset password');
+            toast.error('Please Enter Your email and reset password');
             return;
         }
         sendPasswordResetEmail(auth, email).then(() => {
-            alert('password reset email send please check email inbox');
+
+            toast.success('password reset email send please check email inbox');
         }).catch(error => {
-            alert(error);
+            toast.error(error);
         })
     }
 
@@ -76,10 +80,24 @@ const Login = () => {
                     },
                     body: JSON.stringify(userinfodata)
                 }).then(res => res.json())
-                    .then(data => console.log(data));
+                    .then(data => {
+                        if (data.insertedId) {
+                            Swal.fire({
+                                title: "Registration Succesfull!",
+                                icon: "success",
+                                draggable: true
+                            });
+                            navigate('/');
+
+                        }
+
+
+                    });
 
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                toast.error(error);
+            });
     }
 
 
@@ -87,6 +105,10 @@ const Login = () => {
         <div>
 
             <div className="hero bg-base-200 min-h-screen">
+                <ToastContainer
+                    position="top-center"
+                    reverseOrder={false}
+                />
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <div className="card-body">

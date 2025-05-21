@@ -1,16 +1,24 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 // import ReactTooltip from 'react-tooltip';
 
 
 const Navbar = () => {
     const { user, signout, setUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const handleSignOut = () => {
         signout().then(() => {
+
             setUser(null);
+            navigate('/login');
+            toast.success('Log Out Succesfully')
+
         }).catch(error => {
-            // console.log(error);
+            toast.error(error);
+
+
         })
     }
     console.log(user?.photoURL);
@@ -37,6 +45,10 @@ const Navbar = () => {
     </>
     return (
         <div className="navbar bg-gray-900 shadow-sm py-4">
+            <ToastContainer
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -64,7 +76,7 @@ const Navbar = () => {
             <div className="navbar-end">
                 <div className="avatar">
                     <div className="mask mask-hexagon-2 w-8">
-                        <img src={user ? user?.photoURL : 'https://img.daisyui.com/images/profile/demo/distracted2@192.webp'} alt="User Profile" />
+                        <img src={user && user?.photoURL} alt='sd' />
                         {/* <ReactTooltip place="top" type="dark" effect="solid" />
                         data-tip="Hello, I am a tooltip!" */}
 
