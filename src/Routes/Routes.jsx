@@ -9,11 +9,13 @@ import MyRecipe from "../Pages/MyRecipe/MyRecipe";
 import Registration from "../Pages/Registration/Registration";
 import Login from "../Pages/Login/Login";
 import Details from "../Pages/Details/Details";
+import NotFound from "../Components/NotFound/NotFound";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         Component: Layouts,
+        errorElement: NotFound,
         children: [
             {
                 index: true,
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:8080/details/${params.id}`),
                 Component: Details
             },
+            {
+                path: '*',
+                Component: NotFound
+            }
 
 
         ]

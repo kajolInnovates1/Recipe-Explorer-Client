@@ -50,8 +50,8 @@ const Details = () => {
 
                 <div className="grid md:grid-cols-2 gap-6 text-lg text-gray-800">
                     <p><span className="font-semibold">Preparation Time:</span> {recipe.preparationTime} minutes</p>
-                    <p><span className="font-semibold">Cuisine:</span> {recipe.cuisine}</p>
-                    <p><span className="font-semibold">Category:</span> {recipe.categories.join(', ')}</p>
+                    <p><span className="font-semibold"></span> <span className='text-blue-500'> {useLike}</span> people interested in this recipe</p>
+                    <p><span className="font-semibold">Category: </span> {recipe.categories.join(', ')}</p>
 
                 </div>
 

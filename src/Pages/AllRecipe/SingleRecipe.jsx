@@ -16,7 +16,7 @@ const SingleRecipe = ({ recipe }) => {
 
     }
     return (
-        <div>
+        <div >
             <ToastContainer
                 position="top-center"
                 reverseOrder={false}

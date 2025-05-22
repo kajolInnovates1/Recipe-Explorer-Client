@@ -28,7 +28,11 @@ const Login = () => {
                 });
                 // console.log(result.user);
                 setUser(result.user);
-                navigate('/');
+                if (result.user) {
+                    navigate('/');
+
+
+                }
             })
             .catch(error => {
                 // console.error("Login Error:", error.code, error.message);
@@ -64,15 +68,21 @@ const Login = () => {
 
         const provider = new GoogleAuthProvider();
 
+
+
         signInWithPopup(auth, provider)
             .then(result => {
                 // console.log(result);
+                setUser(result.user);
+
+
                 const userinfodata = {
                     email: result?.user?.email,
                     name: result?.user?.displayName,
                     photo: result?.user?.photoURL
+
+
                 }
-                setUser(result.user);
                 fetch('http://localhost:8080/user', {
                     method: 'POST',
                     headers: {
@@ -87,16 +97,21 @@ const Login = () => {
                                 icon: "success",
                                 draggable: true
                             });
-                            navigate('/');
+
 
                         }
+                    }
 
+                    );
+                if (result.user) {
+                    navigate('/');
 
-                    });
-
+                }
             })
             .catch(error => {
                 toast.error(error);
+
+
             });
     }
 

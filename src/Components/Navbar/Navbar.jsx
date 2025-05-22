@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../AuthContext/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
-// import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip'
+import { FaMoon, FaSun } from 'react-icons/fa';
 
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
     const { user, signout, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleSignOut = () => {
@@ -21,7 +22,6 @@ const Navbar = () => {
 
         })
     }
-    console.log(user?.photoURL);
 
 
     const Links = <>
@@ -44,7 +44,8 @@ const Navbar = () => {
 
     </>
     return (
-        <div className="navbar bg-gray-900 shadow-sm py-4">
+        <div className={`navbar bg-gray-900 shadow-sm py-4 ${theme === 'light' ? '' : 'bg-gray-500 text-white'}`}>
+            <Tooltip id="my-tooltip" />
             <ToastContainer
                 position="top-center"
                 reverseOrder={false}
@@ -74,14 +75,39 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div className="avatar">
-                    <div className="mask mask-hexagon-2 w-8">
-                        <img src={user && user?.photoURL} alt='sd' />
-                        {/* <ReactTooltip place="top" type="dark" effect="solid" />
-                        data-tip="Hello, I am a tooltip!" */}
+                <button className='mr-4'
+                    onClick={toggleTheme}
+                    style={{
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '1.5rem',
+                        color: theme === 'light' ? '#000' : '#fff',
+                    }}
+                >
+                    {theme === 'light' ? <FaMoon color='white' /> : < FaSun color='white' />}
+                </button>
 
+                <a
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content={user?.displayName}
+                    data-tooltip-place="top"
+                >
+                    <div className="avatar">
+                        <div className="mask mask-hexagon-2 w-8">
+                            {
+                                user ? <img src={user ? user?.photoURL : 'https://img.daisyui.com/images/profile/demo/distracted2@192.webp'} alt='sd' /> : ' '
+
+                            }
+
+
+                        </div>
                     </div>
-                </div>
+
+                </a>
+
+
+
                 <div className='ml-2'>
                     {
                         user ? <button onClick={handleSignOut} className='btn bg-primary text-white'>Log Out</button> : <Link to={'/login'}><button className='btn bg-primary text-white'>Log In</button></Link>

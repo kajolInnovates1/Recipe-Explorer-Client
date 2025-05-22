@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
+import { AuthContext } from '../../Components/AuthContext/AuthContext';
+import { Link } from 'react-router';
 
 const SingleSort = ({ recipe }) => {
     const {
@@ -13,6 +15,7 @@ const SingleSort = ({ recipe }) => {
         preparationTime,
         categories,
     } = recipe;
+    const { user } = useContext(AuthContext);
 
     return (
         <div className="bg-white rounded-xl shadow-lg p-6">
@@ -44,6 +47,14 @@ const SingleSort = ({ recipe }) => {
                 <FaThumbsUp className="mr-2" />
                 <span>{likeCount}</span>
             </div>
+
+            {
+                user && <Link to={`/details/${_id}`}>
+                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">
+                        See Details
+                    </button>
+                </Link>
+            }
         </div>
     );
 };

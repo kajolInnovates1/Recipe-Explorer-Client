@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../AuthContext/AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, } from 'firebase/auth';
 import { auth } from '../Firebase/init.firebase';
 
 const AuthProvider = ({ children }) => {
