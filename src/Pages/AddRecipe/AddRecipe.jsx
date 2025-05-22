@@ -48,7 +48,7 @@ const AddRecipe = () => {
 
             // console.log(formInfo);
 
-            fetch('http://localhost:8080/use', {
+            fetch('https://assignment-10-server-five-wine.vercel.app/use', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
