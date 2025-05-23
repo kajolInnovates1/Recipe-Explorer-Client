@@ -19,7 +19,6 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('https://assignment-10-server-five-wine.vercel.app/sort'),
                 Component: Home
             },
             {
@@ -29,12 +28,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'allrecipe',
-                loader: () => fetch('https://assignment-10-server-five-wine.vercel.app/use'),
+                loader: () => fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/use'),
                 Component: AllRecipe
             },
             {
                 path: 'myrecipe',
-                loader: () => fetch('https://assignment-10-server-five-wine.vercel.app/use'),
+                loader: () => fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/use'),
                 Component: MyRecipe
             },
             {
@@ -47,7 +46,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'details/:id',
-                loader: ({ params }) => fetch(`https://assignment-10-server-five-wine.vercel.app/details/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/details/${params.id}`),
                 Component: Details
             },
             {

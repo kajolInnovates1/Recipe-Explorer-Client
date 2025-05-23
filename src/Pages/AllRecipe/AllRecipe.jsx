@@ -35,7 +35,7 @@ const AllRecipe = () => {
                         className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
                         <option value="">Select a cuisine</option>
-                        {cuisines.map((cuisine) => (
+                        {Array.isArray(cuisines) && cuisines.map((cuisine) => (
                             <option key={cuisine} value={cuisine}>
                                 {cuisine}
                             </option>

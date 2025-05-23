@@ -3,14 +3,14 @@ import Banner from './Banner';
 import Testimonials from './Testmonial';
 import Categories from './Category';
 import SortData from './SortData';
-import { useLoaderData, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 const Home = () => {
     const navigate = useNavigate();
     const handlesub = () => {
         navigate('/allrecipe');
 
     }
-    const data = useLoaderData();
+    // const data = useLoaderData();
     return (
         <div>
 
@@ -24,7 +24,7 @@ const Home = () => {
 
             {/* Sorting section */}
             <div>
-                <SortData data={data}></SortData>
+                <SortData ></SortData>
             </div>
 
             <div className='text-center mb-12'>
