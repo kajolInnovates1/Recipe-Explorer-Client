@@ -18,7 +18,7 @@ const Details = () => {
             return;
         }
 
-        fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/details', {
+        fetch('https://assignment-10-server-five-wine.vercel.app//details', {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

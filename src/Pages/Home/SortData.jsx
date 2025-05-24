@@ -5,7 +5,7 @@ const SortData = () => {
     const [remain, setRemain] = useState([]);
 
     useEffect(() => {
-        fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/sort')
+        fetch('https://assignment-10-server-five-wine.vercel.app//sort')
             .then((res) => res.json())
             .then((data) => {
                 console.log('Fetched data:', data);

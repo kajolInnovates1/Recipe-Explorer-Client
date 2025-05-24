@@ -15,7 +15,7 @@ const SingleMyrecipe = ({ recipe, handleDeleteFromUI, handleUpdateInUI }) => {
     });
 
     const handleDelete = () => {
-        fetch(`https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/myrecipe/${_id}`, {
+        fetch(`https://assignment-10-server-five-wine.vercel.app//myrecipe/${_id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -38,7 +38,7 @@ const SingleMyrecipe = ({ recipe, handleDeleteFromUI, handleUpdateInUI }) => {
             categories: editRecipe.categories.split(',').map(cat => cat.trim())
         };
 
-        fetch(`https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/myrecipe/${_id}`, {
+        fetch(`https://assignment-10-server-five-wine.vercel.app//myrecipe/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -48,7 +48,7 @@ const AddRecipe = () => {
 
             // console.log(formInfo);
 
-            fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/use', {
+            fetch('https://assignment-10-server-five-wine.vercel.app//use', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

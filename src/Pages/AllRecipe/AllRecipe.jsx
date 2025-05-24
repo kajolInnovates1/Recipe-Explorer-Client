@@ -57,7 +57,8 @@ const AllRecipe = () => {
                     data-aos-anchor-placement="top-center"
                     className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'
                 >
-                    {recipes.map(recipe => <SingleRecipe key={recipe._id} recipe={recipe} />)}
+                    {
+                        Array.isArray(recipes) && recipes.map(recipe => <SingleRecipe key={recipe._id} recipe={recipe} />)}
                 </div>
             )}
         </div>

@@ -83,7 +83,7 @@ const Login = () => {
 
 
                 }
-                fetch('https://assignment-10-server-bagm7fo5c-kajol201s-projects.vercel.app/user', {
+                fetch('https://assignment-10-server-five-wine.vercel.app//user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
