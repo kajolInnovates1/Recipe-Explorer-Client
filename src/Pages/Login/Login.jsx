@@ -36,11 +36,11 @@ const Login = () => {
             })
             .catch(error => {
                 // console.error("Login Error:", error.code, error.message);
-                Swal.fire({
-                    icon: "error",
-                    title: "Login Failed",
-                    text: error.message,
-                });
+                // Swal.fire({
+                //     icon: "error",
+                //     title: "Login Failed",
+                //     text: error.message,
+                // });
             });
 
 
@@ -93,7 +93,7 @@ const Login = () => {
                     .then(data => {
                         if (data.insertedId) {
                             Swal.fire({
-                                title: "Registration Succesfull!",
+                                title: "Login Succesfull!",
                                 icon: "success",
                                 draggable: true
                             });
