@@ -5,11 +5,12 @@ const SortData = () => {
     const [remain, setRemain] = useState([]);
 
     useEffect(() => {
-        fetch('https://assignment-10-server-five-wine.vercel.app//sort')
+        fetch('https://assignment-10-server-five-wine.vercel.app/sort')
             .then((res) => res.json())
             .then((data) => {
                 console.log('Fetched data:', data);
-                setRemain(data);
+                const remaining = data.slice(0, 6);
+                setRemain(remaining);
             })
             .catch((error) => {
                 console.error('Error fetching sorted data:', error);

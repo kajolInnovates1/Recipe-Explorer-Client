@@ -57,7 +57,7 @@ const Registration = () => {
             })
             setUser(result.user);
 
-            fetch('https://assignment-10-server-five-wine.vercel.app//user', {
+            fetch('https://assignment-10-server-five-wine.vercel.app/user', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -105,7 +105,7 @@ const Registration = () => {
 
 
                 }
-                fetch('https://assignment-10-server-five-wine.vercel.app//user', {
+                fetch('https://assignment-10-server-five-wine.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
