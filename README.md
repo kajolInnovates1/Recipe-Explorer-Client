@@ -1,14 +1,33 @@
-# React + Vite
+# 🍳 Receipe Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Receipe Explorer is a user-friendly web application designed to help you discover, save, and share delicious recipes from around the world. Whether you're a beginner or a seasoned cook, explore a wide variety of dishes and bring flavors to your kitchen!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Features
 
-## Expanding the ESLint configuration
+- 🔍 Search and browse recipes by category, ingredients, or cuisine  
+- 📝 View detailed recipe instructions with images  
+- ⭐ Save your favorite recipes for quick access  
+- 🥘 Responsive design for seamless experience on all devices  
+- 🧑‍🍳 User-friendly interface for easy navigation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
 
+## 🛠️ Tech Stack
 
+- **Frontend:** React.js  
+- **Styling:** Tailwind CSS  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB   
+- **Authentication:** Firebase 
+
+---
+
+## 🚀 Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/Receipe-Explorer.git
+cd Receipe-Explorer
