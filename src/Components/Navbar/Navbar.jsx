@@ -7,6 +7,7 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 
 const Navbar = ({ theme, toggleTheme }) => {
+
     const { user, signout, setUser } = useContext(AuthContext);
     const navigate = useNavigate();
     const handleSignOut = () => {
@@ -25,18 +26,18 @@ const Navbar = ({ theme, toggleTheme }) => {
 
 
     const Links = <>
-        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl  md:text-white ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to="/">Home</NavLink>
-        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl  md:text-white ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/allrecipe'>All Recipes</NavLink>
-        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold text-xl md:text-white ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ' '}`} to='/addrecipe'>Add Recipe</NavLink>
+        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold   md:text-white ${isActive ? 'bg-blue-600 px-2 py-1 text-white rounded-xl' : ' '}`} to="/">Home</NavLink>
+        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold  md:text-white ${isActive ? 'bg-blue-600 px-2 py-1 text-white rounded-xl' : ' '}`} to='/allrecipe'>All Recipes</NavLink>
+        <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold  md:text-white ${isActive ? 'bg-blue-600 px-2 py-1 text-white rounded-xl' : ' '}`} to='/addrecipe'>Add Recipe</NavLink>
 
         {
             user &&
-            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold md:text-white text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ''}`} to="/myrecipe">My Recipe</NavLink>
+            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 font-bold md:text-white  ${isActive ? 'bg-blue-600 px-2 py-1 text-white rounded-xl' : ''}`} to="/myrecipe">My Recipe</NavLink>
         }
 
         {
             !user &&
-            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 md:text-white font-bold text-xl ${isActive ? 'bg-blue-600 px-3 py-2 text-white rounded-xl' : ''}`} to="/registration">Registration</NavLink>
+            <NavLink className={({ isActive }) => `ml-2 md:ml-12 mb-4 md:mb-2 md:text-white font-bold text-xl ${isActive ? 'bg-blue-600 px-2 py-1 text-white rounded-xl' : ''}`} to="/registration">Registration</NavLink>
         }
 
 
@@ -44,7 +45,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
     </>
     return (
-        <div className={`navbar bg-gray-900 shadow-sm py-4 ${theme === 'light' ? '' : 'bg-gray-500 text-white'}`}>
+        <div className={`navbar shadow-sm py-4 fixed top-0 left-0 w-full z-10 ${theme === 'light' ? 'bg-gray-900' : 'bg-gray-500 text-white'}`}>
             <Tooltip id="my-tooltip" />
             <ToastContainer
                 position="top-center"
